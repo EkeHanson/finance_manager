@@ -1,0 +1,68 @@
+/* Demo Page Custom CSS */
+.demo-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+.demo-form {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  min-width: 340px;
+  max-width: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.demo-form h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #6c3fcf;
+  margin-bottom: 0.5rem;
+}
+.demo-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.demo-input-group label {
+  font-size: 1rem;
+  color: #6c7a89;
+}
+.demo-input-group input {
+  border: 1px solid #e3e8ee;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: #2d3a4a;
+  background: #f5f7fa;
+  outline: none;
+}
+.demo-btn {
+  background: #6c3fcf;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.demo-btn:hover {
+  background: #4b2fa6;
+}
+.demo-success {
+  color: #2e7d32;
+  background: #e6f4ea;
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.98rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}

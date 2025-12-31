@@ -1,0 +1,814 @@
+/* Import modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Define CSS variables for theming */
+:root {
+  --tenant-primary: #FF0000;
+  --tenant-secondary: #FADBD8;
+  --primary: var(--tenant-primary);
+  --secondary: var(--tenant-secondary);
+  --background-dark: #0A0A23;
+  --background-light: #F5F7FA;
+  --card-bg-dark: rgba(30, 30, 50, 0.8);
+  --card-bg-light: rgba(255, 255, 255, 0.9);
+  --text-dark: #FFFFFF;
+  --text-light: #000000;
+  --accent: var(--tenant-primary);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --border-radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+.withdrawal-requests {
+  font-family: 'Inter', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  transition: var(--transition);
+}
+
+.withdrawal-requests.light {
+  background: linear-gradient(135deg, var(--background-light) 0%, #E0E7FF 100%);
+  color: #1A1A3D !important;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.withdrawal-requests.light .header-section {
+  background: var(--card-bg-light);
+}
+
+.user-greeting h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.5rem 0;
+}
+
+.user-greeting p {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.message {
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.3s ease;
+}
+
+.withdrawal-requests.light .message {
+  background: var(--card-bg-light);
+  color: var(--text-light);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.withdrawal-form-section,
+.history-section,
+.ledger-section {
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+}
+
+.withdrawal-requests.light .withdrawal-form-section,
+.withdrawal-requests.light .history-section,
+.withdrawal-requests.light .ledger-section {
+  background: var(--card-bg-light);
+}
+
+.section-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.section-header h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  display: block;
+}
+
+/* Withdrawal Form */
+.withdrawal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid var(--secondary);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  background: transparent;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.withdrawal-requests.light .form-group input,
+.withdrawal-requests.light .form-group select {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1A1A3D;
+  border: 1px solid #ccc;
+}
+
+.withdrawal-requests.light .form-group input::placeholder {
+  color: #666;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--secondary);
+}
+
+.submit-button {
+  background: var(--primary);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit-button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button-icon {
+  font-size: 1rem;
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--border-radius);
+}
+
+.withdrawal-table,
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.withdrawal-table thead,
+.ledger-table thead {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--text-dark);
+}
+
+.withdrawal-table th,
+.ledger-table th {
+  padding: 1rem 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.withdrawal-table tbody tr,
+.ledger-table tbody tr {
+  border-bottom: 1px solid var(--secondary);
+  transition: var(--transition);
+}
+
+.withdrawal-table tbody tr:nth-child(even),
+.ledger-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.withdrawal-requests.light .withdrawal-table tbody tr:nth-child(even),
+.withdrawal-requests.light .ledger-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.withdrawal-table tbody tr:hover,
+.ledger-table tbody tr:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.withdrawal-table td,
+.ledger-table td {
+  padding: 1rem 0.75rem;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.request-id,
+.policy-number {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.withdrawal-type {
+  text-transform: capitalize;
+}
+
+.amount {
+  font-weight: 500;
+  font-family: 'Courier New', monospace;
+}
+
+.amount.inflow {
+  color: #2ed573;
+}
+
+.amount.outflow {
+  color: #dc3545;
+}
+
+.amount.total {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.description {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.approved,
+.status-badge.completed {
+  background: rgba(46, 213, 115, 0.2);
+  color: #2ed573;
+  border: 1px solid #2ed573;
+}
+
+.status-badge.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+.status-badge.rejected,
+.status-badge.cancelled {
+  background: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.date {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+/* Ledger Controls */
+.ledger-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary);
+}
+
+.withdrawal-requests.light .ledger-controls {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.period-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.period-selector label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.period-select {
+  padding: 0.75rem;
+  border: 1px solid var(--secondary);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  background: transparent;
+  color: inherit;
+  transition: var(--transition);
+  max-width: 200px;
+}
+
+.period-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.withdrawal-requests.light .period-select {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1A1A3D;
+  border: 1px solid #ccc;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.preview-button,
+.download-button {
+  background: var(--secondary);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.download-button {
+  background: var(--primary);
+}
+
+.preview-button:hover,
+.download-button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--secondary);
+}
+
+.withdrawal-requests.light .empty-state {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state small {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+  padding: 1rem;
+}
+
+.preview-modal {
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+}
+
+.withdrawal-requests.light .preview-modal {
+  background: var(--card-bg-light);
+  color: var(--text-light);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.modal-header h3 {
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--secondary);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.preview-table thead {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--text-dark);
+}
+
+.preview-table th {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.preview-table tbody tr {
+  border-bottom: 1px solid var(--secondary);
+}
+
+.preview-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.withdrawal-requests.light .preview-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.preview-table td {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--secondary);
+  margin-top: 1.5rem;
+}
+
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--secondary);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+  padding: 2rem;
+}
+
+.withdrawal-requests.light .error {
+  background: var(--card-bg-light);
+  color: var(--text-light);
+}
+
+.error p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.error button {
+  background: var(--primary);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.error button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ledger-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .period-select {
+    max-width: none;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .preview-button,
+  .download-button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .withdrawal-requests {
+    padding: 15px;
+  }
+
+  .header-section {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.2rem;
+  }
+
+  .user-greeting h3 {
+    font-size: 1.5rem;
+  }
+
+  .user-greeting p {
+    font-size: 0.9rem;
+  }
+
+  .withdrawal-form-section,
+  .history-section,
+  .ledger-section {
+    padding: 1.5rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .withdrawal-table th,
+  .withdrawal-table td,
+  .ledger-table th,
+  .ledger-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+
+  .preview-modal {
+    max-height: 85vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .withdrawal-requests {
+    padding: 10px;
+  }
+
+  .header-section {
+    padding: 1rem;
+  }
+
+  .user-greeting h3 {
+    font-size: 1.3rem;
+  }
+
+  .user-greeting p {
+    font-size: 0.85rem;
+  }
+
+  .withdrawal-form-section,
+  .history-section,
+  .ledger-section {
+    padding: 1rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .withdrawal-table th,
+  .withdrawal-table td,
+  .ledger-table th,
+  .ledger-table td {
+    padding: 0.6rem 0.4rem;
+    font-size: 0.75rem;
+    min-width: 80px;
+  }
+
+  .status-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .ledger-controls {
+    padding: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .preview-button,
+  .download-button {
+    font-size: 0.85rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state p {
+    font-size: 1.1rem;
+  }
+
+  .preview-modal {
+    max-height: 80vh;
+  }
+
+  .modal-header {
+    padding: 1rem;
+  }
+
+  .modal-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+}

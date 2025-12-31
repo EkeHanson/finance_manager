@@ -1,0 +1,35 @@
+.modal-overlay {
+  overflow-y: auto;
+  align-items: flex-start;
+}
+.security-overview .event-count {
+  font-size: 0.8em;
+  color: #666;
+  margin-left: 8px;
+}
+
+.no-events-message {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  font-style: italic;
+}
+
+.security-event-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.event-status.success {
+  color: #00a86b;
+  font-weight: bold;
+}
+
+.event-status.failed {
+  color: #dc3545;
+  font-weight: bold;
+}

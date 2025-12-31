@@ -1,0 +1,74 @@
+/* src/components/Loader.css */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(219, 215, 215, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+}
+
+.loader-container {
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  background: rgba(181, 45, 45, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.loader-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #ff6200, #5d7fbe, #ff6200);
+  animation: loader-rotate 1.2s linear infinite;
+}
+
+.loader-spinner-inner {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.9;
+  animation: loader-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes loader-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-dash {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+}
+
+.loader-message {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.5px;
+}

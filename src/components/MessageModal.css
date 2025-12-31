@@ -1,0 +1,126 @@
+/* MessageModal styles */
+.message-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff0f0;
+  color: #b71c1c;
+  padding: 32px 48px;
+  border-radius: 14px;
+  box-shadow: 0 6px 32px rgba(183,28,28,0.18), 0 0 0 4px #ffcdd2;
+  z-index: 9999;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: 3px solid #e53935;
+  text-align: center;
+  min-width: 260px;
+  max-width: 90vw;
+  animation: popIn 0.25s;
+}
+.message-modal.success {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border-color: #43a047;
+  box-shadow: 0 6px 32px rgba(67,160,71,0.18), 0 0 0 4px #c8e6c9;
+}
+.message-modal.error { border-left: 5px solid #e63a27; }
+
+@keyframes popIn {
+  0% { transform: translate(-50%, -60%) scale(0.9); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* ConfirmModal styles */
+.confirm-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.confirm-modal {
+  background: #fff;
+  padding: 28px 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  min-width: 260px;
+  text-align: center;
+}
+.confirm-message {
+  margin-bottom: 18px;
+  font-size: 1.08rem;
+}
+.confirm-actions {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+.confirm-btn {
+  background: #388e3c;
+  color: #fff;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cancel-btn {
+  background: #e63a27;
+  color: #fff;
+  border: none;
+  padding: 8px 22px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Responsive styles for ConfirmModal */
+@media (max-width: 768px) {
+  .confirm-modal {
+    padding: 20px 24px;
+    min-width: 280px;
+    max-width: 90vw;
+  }
+
+  .confirm-message {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
+  .confirm-actions {
+    gap: 12px;
+  }
+
+  .confirm-btn,
+  .cancel-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirm-modal {
+    padding: 16px 20px;
+    min-width: 250px;
+  }
+
+  .confirm-message {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .confirm-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .confirm-btn,
+  .cancel-btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+

@@ -1,0 +1,376 @@
+/* src/pages/ReviewSubmission.css */
+.review-submission-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, rgba(0, 48, 135, 0.7), rgba(255, 98, 0, 0.7)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+  padding: 1rem;
+  font-family: 'Arial', sans-serif;
+}
+
+.review-form-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.review-form-wrapper h1 {
+  color: #003087;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.review-form-wrapper .subtitle {
+  color: #ff6200;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.review-form-wrapper p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Spinner Animation */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #003087;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Button Spinner */
+.button-spinner {
+  display: inline-block;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Error and Success Icons */
+.error-icon,
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInScale 0.5s ease-in-out;
+}
+
+.error-icon {
+  color: #dc3545;
+}
+
+.success-icon {
+  color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Inline Error Message */
+.inline-error-message {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  color: #856404;
+  animation: slideDown 0.3s ease-out;
+}
+
+.error-icon-small {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #003087;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #003087;
+  box-shadow: 0 0 0 3px rgba(0, 48, 135, 0.1);
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.form-group textarea.error {
+  border-color: #dc3545;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.stars-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.star-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.star-label input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.star-label input:disabled ~ .star {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.star {
+  font-size: 2rem;
+  color: #ddd;
+  transition: color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.star.active,
+.star:hover {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+.attachments-preview ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.attachments-preview li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin: 0.25rem 0;
+}
+
+.submit-btn {
+  background: #ff6200;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #e55800;
+  transform: translateY(-1px);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.success-message,
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.success-message h2 {
+  color: #28a745;
+}
+
+.error-message h2 {
+  color: #dc3545;
+}
+
+.success-message button,
+.error-message button {
+  background: #003087;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.success-message button:hover,
+.error-message button:hover {
+  background: #002066;
+  transform: translateY(-1px);
+}
+
+.success-message button:active,
+.error-message button:active {
+  transform: translateY(0);
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.loading-message h2 {
+  color: #003087;
+}
+
+small {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.textarea-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .review-form-wrapper {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .review-form-wrapper h1 {
+    font-size: 1.5rem;
+  }
+
+  .review-form-wrapper .subtitle {
+    font-size: 1rem;
+  }
+
+  .stars-container {
+    gap: 0.25rem;
+  }
+
+  .star {
+    font-size: 1.5rem;
+  }
+  
+  .textarea-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .inline-error-message {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+}

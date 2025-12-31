@@ -1,0 +1,245 @@
+.dashboard-stats {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.stats-header h2 {
+  color: #003087;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.timeframe-selector select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-left: 4px solid #003087;
+}
+
+.metric-card.total-activities {
+  border-left-color: #2196F3;
+}
+
+.metric-card.success-rate {
+  border-left-color: #4CAF50;
+}
+
+.metric-card.active-users {
+  border-left-color: #FF9800;
+}
+
+.metric-card.security-events {
+  border-left-color: #F44336;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003087;
+  margin-bottom: 0.5rem;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.metric-trend {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.activity-breakdown,
+.top-users {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.activity-breakdown h3,
+.top-users h3 {
+  color: #003087;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.activity-type {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  font-weight: 500;
+}
+
+.activity-name {
+  text-transform: capitalize;
+  color: #333;
+}
+
+.activity-count {
+  color: #666;
+  font-weight: 600;
+}
+
+.activity-bar {
+  flex: 1;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.activity-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.activity-success {
+  width: 80px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.user-item:hover {
+  background: #e9ecef;
+}
+
+.user-rank {
+  width: 30px;
+  height: 30px;
+  background: #003087;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.user-email {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.user-stats {
+  text-align: right;
+}
+
+.user-role {
+  font-size: 0.8rem;
+  color: #003087;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.user-activity-count {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.error {
+  color: #F44336;
+}
+
+@media (max-width: 768px) {
+  .dashboard-stats {
+    padding: 1rem;
+  }
+
+  .stats-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .breakdown-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .activity-type {
+    width: 100%;
+  }
+
+  .activity-bar {
+    width: 100%;
+  }
+}

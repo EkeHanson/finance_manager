@@ -1,0 +1,846 @@
+/* Import modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Define CSS variables for theming */
+:root {
+  --tenant-primary: #FF0000;
+  --tenant-secondary: #FADBD8;
+  --primary: var(--tenant-primary);
+  --secondary: var(--tenant-secondary);
+  --background-dark: #0A0A23;
+  --background-light: #F5F7FA;
+  --card-bg-dark: rgba(30, 30, 50, 0.8);
+  --card-bg-light: rgba(255, 255, 255, 0.95);
+  --text-dark: #FFFFFF;
+  --text-light: #000000;
+  --accent: var(--tenant-primary);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --border-radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.tax-modal {
+  font-family: 'Inter', sans-serif;
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: min(1000px, 95vw);
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.tax-modal.light {
+  background: var(--card-bg-light);
+  color: #1A1A3D;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--secondary);
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--secondary);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--secondary);
+  background: rgba(255, 255, 255, 0.03);
+  flex-shrink: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tax-modal.light .modal-tabs {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.tab-button {
+  flex: 1;
+  min-width: 120px;
+  padding: 1rem 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: inherit;
+  opacity: 0.6;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tax-modal.light .tab-button:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.tab-button.active {
+  opacity: 1;
+  border-bottom-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tax-modal.light .tab-button.active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.tab-icon {
+  font-size: 1.2rem;
+}
+
+.modal-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.tab-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.tab-header h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.tab-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.message {
+  padding: 0.8rem 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+.message.success {
+  background: rgba(46, 213, 115, 0.2);
+  color: #155724;
+  border: 1px solid #2ed573;
+}
+
+.message.error {
+  background: rgba(220, 53, 69, 0.2);
+  color: #721c24;
+  border: 1px solid #dc3545;
+}
+
+/* Tax Summary */
+.summary-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tax-modal.light .summary-card {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent);
+}
+
+.card-icon {
+  font-size: 2rem;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tax Records Table */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary);
+}
+
+.tax-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.tax-table thead {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--text-dark);
+}
+
+.tax-table th {
+  padding: 1rem 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tax-table tbody tr {
+  border-bottom: 1px solid var(--secondary);
+  transition: var(--transition);
+}
+
+.tax-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tax-modal.light .tax-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.tax-table tbody tr:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.tax-table td {
+  padding: 1rem 0.75rem;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.date {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+.tax-type {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.amount {
+  font-weight: 500;
+  font-family: 'Courier New', monospace;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.paid,
+.status-badge.verified {
+  background: rgba(46, 213, 115, 0.2);
+  color: #2ed573;
+  border: 1px solid #2ed573;
+}
+
+.status-badge.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+/* Tax Calculator */
+.calculator-form,
+.certificate-form {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary);
+  margin-bottom: 1.5rem;
+}
+
+.tax-modal.light .calculator-form,
+.tax-modal.light .certificate-form {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid var(--secondary);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  background: transparent;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.tax-modal.light .form-group input,
+.tax-modal.light .form-group select {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1A1A3D;
+  border: 1px solid #ccc;
+}
+
+.calculate-button,
+.generate-button {
+  background: var(--primary);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.calculate-button:hover:not(:disabled),
+.generate-button:hover:not(:disabled) {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-button:disabled,
+.generate-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-icon {
+  font-size: 1rem;
+}
+
+.calculation-result {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+.tax-modal.light .calculation-result {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.calculation-result h5 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.result-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.result-item.total {
+  border-bottom: none;
+  border-top: 2px solid var(--accent);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.result-label {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.result-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.result-item.total .result-value {
+  font-size: 1.5rem;
+}
+
+/* Tax Certificates */
+.certificates-section {
+  margin-bottom: 2rem;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.certificate-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.tax-modal.light .certificate-card {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.certificate-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent);
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.cert-icon {
+  font-size: 1.8rem;
+}
+
+.cert-header h5 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.cert-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cert-info {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cert-info strong {
+  opacity: 0.8;
+}
+
+.download-cert-button {
+  background: var(--secondary);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.download-cert-button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--secondary);
+}
+
+.tax-modal.light .empty-state {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.7;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: var(--secondary);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--secondary);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .summary-cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .certificates-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0.5rem;
+    align-items: center;
+  }
+
+  .tax-modal {
+    max-height: 95vh;
+    margin: 0.5rem 0;
+  }
+
+  .modal-header {
+    padding: 1rem;
+  }
+
+  .modal-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .modal-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .tab-button {
+    flex: 0 0 auto;
+    min-width: 100px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .tab-text {
+    display: none;
+  }
+
+  .tab-icon {
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+
+  .tab-header h4 {
+    font-size: 1.2rem;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tax-table th,
+  .tax-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+
+  .certificates-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .tax-modal {
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .modal-header {
+    padding: 0.75rem;
+  }
+
+  .modal-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .close-button {
+    width: 28px;
+    height: 28px;
+    font-size: 1.5rem;
+  }
+
+  .tab-button {
+    min-width: 80px;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .tab-icon {
+    font-size: 1.3rem;
+  }
+
+  .modal-content {
+    padding: 0.75rem;
+  }
+
+  .tab-header h4 {
+    font-size: 1.1rem;
+  }
+
+  .tab-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .summary-card {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+  }
+
+  .card-content p {
+    font-size: 1.3rem;
+  }
+
+  .calculator-form,
+  .certificate-form {
+    padding: 1rem;
+  }
+
+  .calculate-button,
+  .generate-button {
+    font-size: 0.85rem;
+    padding: 0.65rem 1.2rem;
+  }
+
+  .result-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .result-value {
+    font-size: 1rem;
+  }
+
+  .result-item.total .result-value {
+    font-size: 1.3rem;
+  }
+
+  .tax-table th,
+  .tax-table td {
+    padding: 0.6rem 0.4rem;
+    font-size: 0.75rem;
+    min-width: 80px;
+  }
+
+  .status-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .certificate-card {
+    padding: 1rem;
+  }
+
+  .cert-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .download-cert-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state p {
+    font-size: 1rem;
+  }
+}

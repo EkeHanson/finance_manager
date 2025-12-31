@@ -1,0 +1,115 @@
+/* src/components/StaffProfile.css */
+.staff-detail-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.staff-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-btn, .edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #003087;
+  font-family: 'Georgia', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-btn:hover, .edit-btn:hover {
+  color: #FF4040;
+}
+
+.staff-detail-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.staff-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  color: #003087;
+  margin-bottom: 1.5rem;
+  font-family: 'Georgia', serif;
+}
+
+.staff-avatar {
+  font-size: 2rem;
+  color: #E63A27;
+}
+
+.staff-contact {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.staff-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-family: 'Georgia', serif;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #333;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .staff-detail-card {
+    padding: 1rem;
+  }
+
+  .staff-detail-title {
+    font-size: 1.3rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .staff-contact {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .staff-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .staff-detail-title {
+    font-size: 1.1rem;
+  }
+
+  .staff-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

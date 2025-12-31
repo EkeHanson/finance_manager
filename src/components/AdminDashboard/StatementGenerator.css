@@ -1,0 +1,352 @@
+/* Pagination styles for StatementGenerator */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+.pagination-btn {
+  background: #fff;
+  color: #E63A27;
+  border: 1px solid #E63A27;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(230,58,39,0.08);
+}
+.pagination-btn:hover:not(:disabled), .pagination-btn.active {
+  background: #E63A27;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(230,58,39,0.15);
+}
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.statement-generator {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.statement-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.statement-header img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.statement-header h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #E63A27;
+  margin: 0;
+}
+
+.statement-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(230,58,39,0.08);
+}
+
+.statement-table th,
+.statement-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.statement-table th {
+  font-weight: 600;
+  background: #E63A27;
+  color: #fff;
+}
+
+.statement-table tr {
+  background: #fff;
+  transition: background 0.2s;
+}
+
+.statement-table td .action-btn {
+  margin-right: 0.5rem;
+}
+
+.action-btn {
+  background: #E63A27;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+  background: #b92b1b;
+}
+
+.statement-modal {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+
+.statement-modal.success {
+  background: #10b981;
+  color: #fff;
+}
+
+.statement-modal.error {
+  background: #e53e3e;
+  color: #fff;
+}
+
+.printable-statement {
+  padding: 2rem;
+}
+
+.statement-content {
+  margin-bottom: 1rem;
+}
+
+/* Responsive Table */
+@media (max-width: 900px) {
+  .statement-table th,
+  .statement-table td {
+    padding: 0.5rem;
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .statement-generator {
+    padding: 0 0.2rem;
+  }
+  .statement-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .statement-table,
+  .statement-table thead,
+  .statement-table tbody,
+  .statement-table tr {
+    display: block;
+    width: 100%;
+  }
+  .statement-table thead {
+    display: none;
+  }
+  .statement-table tr {
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(230,58,39,0.08);
+    background: #fff;
+    padding: 0.5rem 0.7rem;
+  }
+  .statement-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border: none;
+    font-size: 0.97rem;
+    position: relative;
+  }
+  .statement-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #E63A27;
+    flex-basis: 55%;
+    text-align: left;
+    padding-right: 0.5em;
+  }
+  .statement-table td:last-child {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+/* File: src/components/AdminDashboard/StatementGenerator.css */
+
+/* Add these to your existing StatementGenerator.css file */
+
+.statement-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.policy-selection-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.policy-selection-modal .modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.policy-selection-modal h3 {
+  margin-bottom: 1rem;
+  color: #003087;
+}
+
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.policy-option {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.policy-option:hover {
+  background: #e9ecef;
+  border-color: #003087;
+}
+
+.modal-close-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.statement-preview {
+  margin-top: 2rem;
+  border-top: 2px solid #003087;
+  padding-top: 2rem;
+}
+
+.statement-preview h3 {
+  margin-bottom: 1rem;
+  color: #003087;
+}
+
+.statement-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.statement-actions .action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.printable-statement {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statement-info {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+.statement-info p {
+  margin: 0.5rem 0;
+}
+
+.statement-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.statement-detail-table th,
+.statement-detail-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.statement-detail-table thead {
+  background: #003087;
+  color: white;
+}
+
+.statement-detail-table tfoot {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+@media print {
+  .statement-actions,
+  .statement-controls,
+  .statement-table,
+  .pagination {
+    display: none;
+  }
+  
+  .printable-statement {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .statement-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .statement-actions {
+    flex-direction: column;
+  }
+}

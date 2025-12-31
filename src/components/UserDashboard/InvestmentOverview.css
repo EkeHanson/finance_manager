@@ -1,0 +1,610 @@
+/* Import modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Define CSS variables for theming */
+:root {
+  --tenant-primary: #FF0000;
+  --tenant-secondary: #FADBD8;
+  --primary: var(--tenant-primary);
+  --secondary: var(--tenant-secondary);
+  --background-dark: #0A0A23;
+  --background-light: #F5F7FA;
+  --card-bg-dark: rgba(30, 30, 50, 0.8);
+  --card-bg-light: rgba(255, 255, 255, 0.9);
+  --text-dark: #FFFFFF;
+  --text-light: #000000;
+  --accent: var(--tenant-primary);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --border-radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+.investment-overview {
+  font-family: 'Inter', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  transition: var(--transition);
+}
+
+.investment-overview.light {
+  background: linear-gradient(135deg, var(--background-light) 0%, #E0E7FF 100%);
+  color: #1A1A3D !important;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.investment-overview.light .header-section {
+  background: var(--card-bg-light);
+}
+
+.user-greeting h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.5rem 0;
+}
+
+.user-greeting p {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.summary-section,
+.activity-section,
+.policies-section {
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+}
+
+.investment-overview.light .summary-section,
+.investment-overview.light .activity-section,
+.investment-overview.light .policies-section {
+  background: var(--card-bg-light);
+}
+
+.section-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.section-header h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  display: block;
+}
+
+/* Summary Grid */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary);
+  transition: var(--transition);
+}
+
+.investment-overview.light .summary-card {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  opacity: 0.8;
+}
+
+.card-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Activity Section */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary);
+  transition: var(--transition);
+}
+
+.investment-overview.light .activity-item {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.activity-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  transform: translateX(5px);
+}
+
+.investment-overview.light .activity-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.activity-details {
+  flex: 1;
+}
+
+.activity-description {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.activity-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.activity-date {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.activity-amount {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100px;
+}
+
+/* Policies Table */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--border-radius);
+}
+
+.policies-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.policies-table thead {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: var(--text-dark);
+}
+
+.policies-table th {
+  padding: 1rem 0.75rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.policies-table tbody tr {
+  border-bottom: 1px solid var(--secondary);
+  transition: var(--transition);
+}
+
+.policies-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.investment-overview.light .policies-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.policies-table tbody tr:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.policies-table td {
+  padding: 1rem 0.75rem;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.policy-number {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.amount {
+  font-weight: 500;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+.total-balance {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.frequency {
+  text-transform: capitalize;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background: rgba(46, 213, 115, 0.2);
+  color: #2ed573;
+  border: 1px solid #2ed573;
+}
+
+.status-badge.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+  border: 1px solid #ffc107;
+}
+
+.status-badge.inactive {
+  background: rgba(220, 53, 69, 0.2);
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.date {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--secondary);
+}
+
+.investment-overview.light .empty-state {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-state small {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--secondary);
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  background: var(--card-bg-dark);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+  padding: 2rem;
+}
+
+.investment-overview.light .error {
+  background: var(--card-bg-light);
+  color: var(--text-light);
+}
+
+.error p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.error button {
+  background: var(--primary);
+  color: var(--text-dark);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.error button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .investment-overview {
+    padding: 15px;
+  }
+
+  .header-section {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.2rem;
+  }
+
+  .user-greeting h3 {
+    font-size: 1.5rem;
+  }
+
+  .user-greeting p {
+    font-size: 0.9rem;
+  }
+
+  .summary-section,
+  .activity-section,
+  .policies-section {
+    padding: 1.5rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .summary-card {
+    padding: 1.2rem;
+  }
+
+  .card-value {
+    font-size: 1.6rem;
+  }
+
+  .activity-item {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .activity-meta {
+    width: 100%;
+  }
+
+  .table-wrapper {
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .policies-table th,
+  .policies-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .investment-overview {
+    padding: 10px;
+  }
+
+  .header-section {
+    padding: 1rem;
+  }
+
+  .user-greeting h3 {
+    font-size: 1.3rem;
+  }
+
+  .user-greeting p {
+    font-size: 0.85rem;
+  }
+
+  .summary-section,
+  .activity-section,
+  .policies-section {
+    padding: 1rem;
+  }
+
+  .section-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .summary-card {
+    padding: 1rem;
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+  }
+
+  .card-label {
+    font-size: 0.85rem;
+  }
+
+  .card-value {
+    font-size: 1.4rem;
+  }
+
+  .activity-description {
+    font-size: 0.85rem;
+  }
+
+  .activity-date,
+  .activity-amount {
+    font-size: 0.8rem;
+  }
+
+  .policies-table th,
+  .policies-table td {
+    padding: 0.6rem 0.4rem;
+    font-size: 0.75rem;
+    min-width: 80px;
+  }
+
+  .status-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .empty-icon {
+    font-size: 2.5rem;
+  }
+
+  .empty-state p {
+    font-size: 1rem;
+  }
+
+  .empty-state small {
+    font-size: 0.8rem;
+  }
+}

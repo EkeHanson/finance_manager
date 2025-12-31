@@ -1,0 +1,309 @@
+/* src/components/AdminDashboard/AdminDashboard.css */
+
+/* Container and layout */
+.dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, rgba(0, 48, 135, 0.7), rgba(255, 98, 0, 0.7)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+  display: flex;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 240px;
+  background: #003087;
+  color: #eaecf1;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  min-height: 100vh;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem 1rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+.sidebar-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.75rem;
+}
+.sidebar-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.sidebar-nav {
+  flex: 1 0 auto;
+}
+
+.sidebar::after {
+  content: "";
+  display: block;
+  height: 0;
+}
+
+.sidebar-nav li {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-nav li:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.sidebar-nav .material-icons {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+
+/* Main dashboard area */
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: rgba(255,255,255,0.95);
+}
+
+/* Header styles */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  z-index: 2;
+}
+.dashboard-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+.dashboard-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #003087;
+  letter-spacing: 1px;
+}
+.dashboard-profile {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #003087;
+}
+.dashboard-profile .material-icons {
+  font-size: 2rem;
+  color: #ff6200;
+}
+
+/* Dashboard content */
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Section titles */
+.dashboard-section-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #003087;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+/* Stats cards */
+.dashboard-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 180px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.stat-card .material-icons {
+  font-size: 1.8rem;
+  color: #ff6200;
+  margin-bottom: 0.5rem;
+}
+.stat-card h3 {
+  font-size: 1.1rem;
+  color: #003087;
+  margin-bottom: 0.5rem;
+}
+.stat-card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff6200;
+}
+
+/* Clickable stat cards */
+.stat-card.clickable {
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.stat-card.clickable:hover, .stat-card.clickable:focus {
+  box-shadow: 0 4px 12px rgba(0, 48, 135, 0.15);
+  transform: translateY(-2px) scale(1.03);
+  background: #eaf6f5;
+}
+
+
+/* Logout button styles */
+.logout-btn {
+  background: #ff6200;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.logout-btn:hover {
+  background: #e55800;
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+
+/* Investor detail styles */
+.investor-detail-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-btn {
+  margin-bottom: 1.5rem;
+  background: #E63A27;
+  color: #390f0f;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+.back-btn:hover {
+  background: #0050b3;
+}
+
+.investor-detail-card {
+  background: #fff;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.investor-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #003087;
+}
+
+.investor-avatar {
+  font-size: 2.2rem !important;
+  background: #e3eafc;
+  border-radius: 50%;
+  padding: 0.3em;
+  color: #003087;
+}
+
+.investor-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-label {
+  font-size: 0.97rem;
+  color: #888;
+  margin-bottom: 0.2rem;
+}
+
+.detail-value {
+  font-size: 1.08rem;
+  color: #222;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.roi-history-title {
+  margin-bottom: 0.7rem;
+  color: #003087;
+  font-size: 1.13rem;
+  font-weight: 600;
+}
+
+.roi-history-table-wrapper {
+  overflow-x: auto;
+}
+
+.roi-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f7faff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.97rem;
+}
+
+.roi-history-table th,
+.roi-history-table td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+}
+
+.roi-history-table th {
+  background: #e3eafc;
+  color: #003087;
+  font-weight: 600;
+}
+
+.roi-history-table tr:nth-child(even) {
+  background: #f2f6fc;
+}
