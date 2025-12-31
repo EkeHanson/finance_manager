@@ -75,7 +75,18 @@ const StatementPage = () => {
       const result = await generateStatement(statementData);
 
       if (result.success) {
-        setStatement(result.data);
+        const statementData = result.data;
+        // Populate policy_details if missing from API response
+        if (!statementData.policy_details && selectedPolicy) {
+          const policy = policies.find(p => String(p.id) === selectedPolicy);
+          if (policy) {
+            statementData.policy_details = {
+              policy_number: policy.policy_number,
+              investor_name: user?.first_name + ' ' + user?.last_name || 'N/A'
+            };
+          }
+        }
+        setStatement(statementData);
         setMessage('Statement generated successfully');
       } else {
         setError(result.error || 'Failed to generate statement');
@@ -96,8 +107,8 @@ const StatementPage = () => {
 INVESTMENT STATEMENT
 ===================
 
-Policy: ${statement.policy_details.policy_number}
-Investor: ${statement.policy_details.investor_name}
+Policy: ${statement.policy_details?.policy_number || 'N/A'}
+Investor: ${statement.policy_details?.investor_name || 'N/A'}
 Period: ${statement.statement_period}
 
 Summary:
@@ -126,7 +137,7 @@ Generated on: ${new Date().toLocaleString()}
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `statement_${statement.policy_details.policy_number}_${Date.now()}.txt`;
+    a.download = `statement_${statement.policy_details?.policy_number || 'unknown'}_${Date.now()}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -238,11 +249,11 @@ Generated on: ${new Date().toLocaleString()}
             <div className="statement-info">
               <div className="info-card">
                 <span className="info-label">Policy Number</span>
-                <span className="info-value">{statement.policy_details.policy_number}</span>
+                <span className="info-value">{statement.policy_details?.policy_number || 'N/A'}</span>
               </div>
               <div className="info-card">
                 <span className="info-label">Investor Name</span>
-                <span className="info-value">{statement.policy_details.investor_name}</span>
+                <span className="info-value">{statement.policy_details?.investor_name || 'N/A'}</span>
               </div>
               <div className="info-card">
                 <span className="info-label">Statement Period</span>
