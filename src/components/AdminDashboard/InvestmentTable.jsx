@@ -28,15 +28,27 @@ const InvestmentTable = ({ investors, onVerifyKYC, onRecordTransaction, onInvest
       const withdrawals = user.withdrawal_details || user.withdrawalDetails || [];
       // Use current_balance from policy, fallback to investment_detail.remaining_balance
       const currentBalance = parseFloat(inv.current_balance || inv.currentBalance || investmentDetail.remaining_balance || 0);
+      const roiBalance = parseFloat(inv.roi_balance || inv.roiBalance || 0);
       const principalAmount = parseFloat(inv.principal_amount || inv.principalAmount || investmentDetail.investment_amount || 0);
-      // Calculate ROI Due (monthly) if not provided
-      let roiDue = inv.roiDue;
+      // Get ROI Due from policies array first, then fallback to top level or calculate
+      const policyData = (inv.policies && inv.policies[0]) || {};
+      // console.log('DEBUG - policyData:', policyData);
+      // console.log('DEBUG - policyData.roi_due:', policyData.roi_due);
+      // console.log('DEBUG - inv.roi_due:', inv.roi_due);
+      // console.log('DEBUG - inv.roiDue:', inv.roiDue);
+      let roiDue = policyData.roi_due || inv.roi_due || inv.roiDue;
       if (roiDue === undefined) {
-        const roiRate = parseFloat(inv.roi_rate || inv.roiRate || investmentDetail.roi_rate || 0);
+        const roiRate = parseFloat(policyData.roi_rate || inv.roi_rate || inv.roiRate || investmentDetail.roi_rate || 0);
         roiDue = currentBalance * roiRate / 100 / 12;
       }
+      roiDue = parseFloat(roiDue || 0);
+      // console.log('DEBUG - final roiDue:', roiDue);
       // Use next_roi_date from policy, fallback to investment_detail.investment_start_date
-      const roiDueDate = inv.next_roi_date || inv.nextRoiDate || investmentDetail.investment_start_date || null;
+      const roiDueDate = policyData.next_roi_date || inv.next_roi_date || inv.nextRoiDate || investmentDetail.investment_start_date || null;
+      
+      // Destructure to exclude roiDue from inv, so we can override it with our calculated value
+      const { roiDue: _, ...invWithoutRoiDue } = inv;
+      
       return {
         id: inv.id,
         name: user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : user.email || inv.name || '',
@@ -44,13 +56,14 @@ const InvestmentTable = ({ investors, onVerifyKYC, onRecordTransaction, onInvest
         date: inv.start_date || inv.startDate || investmentDetail.investment_start_date || '',
         investmentAmount: principalAmount,
         remainingBalance: currentBalance,
+        roiBalance,
         roiDue,
         roiDueDate,
         withdrawals,
         status: inv.status || 'Active',
         kycStatus: user.kyc_status || user.kycStatus || '',
         policies: inv.policies || [],
-        ...inv,
+        ...invWithoutRoiDue,
       };
     });
   const [searchTerm, setSearchTerm] = useState('');
@@ -216,17 +229,18 @@ const InvestmentTable = ({ investors, onVerifyKYC, onRecordTransaction, onInvest
             <th>Unique Policy</th>
             <th>Investor Name</th>
             <th>Investment (₦)</th>
-            <th>Remaining Balance (₦)</th>
+            <th>ROI Balance (₦)</th>
             <th>ROI Due (₦)</th>
+            <th>Next ROI</th>
             <th>Withdrawals (₦)</th>
-            <th>Status</th>
+            {/* <th>Status</th> */}
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {paginatedInvestors.length === 0 ? (
             <tr>
-              <td colSpan={9} style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>
+              <td colSpan={10} style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>
                 No investors found.
               </td>
             </tr>
@@ -255,12 +269,15 @@ const InvestmentTable = ({ investors, onVerifyKYC, onRecordTransaction, onInvest
                   <td data-label="Investment (₦)">
                     ₦{investmentAmount.toLocaleString()}
                   </td>
-                  <td data-label="Remaining Balance (₦)">
-                    ₦{remainingBalance.toLocaleString()}
+                  <td data-label="ROI Balance (₦)">
+                    ₦{(investor.roiBalance ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </td>
+                  <td data-label="ROI Due (₦)">
+                    ₦{(investor.roiDue ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
                   <td data-label="ROI Due (₦)">
                     <div>
-                      <div>₦{(investor.roiDue ?? 0).toLocaleString()}</div>
+                      {/* <div>₦{(investor.roiDue ?? 0).toLocaleString()}</div> */}
                       <div
                         className={
                           !investor.roiDueDate || investor.roiDueDate === 'N/A' || investor.roiDueDate === 'On Demand'
@@ -299,6 +316,9 @@ const InvestmentTable = ({ investors, onVerifyKYC, onRecordTransaction, onInvest
                     >
                       {investor.status || 'Active'}
                     </span>
+                 
+                 
+                 
                   </td>
                   <td data-label="Actions" style={{ position: 'relative' }}>
                     <div className="hamburger-menu-wrapper" ref={openMenuId === investor.id ? menuRef : null}>

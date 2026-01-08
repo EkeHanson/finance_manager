@@ -239,10 +239,7 @@ const InvestmentForm = ({ onSubmit }) => {
     const { name, value, files } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: files ? files[0] : value,
-      ...(name === 'investmentAmount' && value
-        ? { interestAmount: ((parseFloat(value) * 0.4) / 12).toFixed(2) }
-        : {})
+      [name]: files ? files[0] : value
     }));
     setErrors(prev => ({ ...prev, [name]: '' }));
   };
