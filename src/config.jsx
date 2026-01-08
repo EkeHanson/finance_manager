@@ -15,8 +15,8 @@ const getConfig = () => {
     };
   } else if (isStaging) {
     return {
-      API_BASE_URL: 'https://api.e3os.co.uk',
-      WEB_PAGE_URL: 'https://api.e3os.co.uk',
+      API_BASE_URL: 'https://server1.prolianceltd.com',
+      WEB_PAGE_URL: 'https://finance-manager-ruby.vercel.app',
       DEPLOYMENT_ENV: 'staging',
       DEBUG: true,
       COOKIE_DOMAIN: '.prolianceltd.com',
@@ -25,8 +25,8 @@ const getConfig = () => {
   } else if (isServerDeployment) {
     // Any remote domain (e.g. Vercel, Netlify, AWS, etc.)
     return {
-      API_BASE_URL: 'https://api.e3os.co.uk',
-      WEB_PAGE_URL: `https://${hostname}`,
+      API_BASE_URL: 'https://server1.prolianceltd.com',
+      WEB_PAGE_URL: `https://finance-manager-ruby.vercel.app`,
       DEPLOYMENT_ENV: 'remote',
       DEBUG: false,
       COOKIE_DOMAIN: '.prolianceltd.com',
