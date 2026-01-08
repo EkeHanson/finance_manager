@@ -2,6 +2,7 @@
 .table-container {
   margin: 0.1rem 0;
   overflow-x: auto;
+  padding: 0.5rem;
 }
 
 .table-container h2 {
@@ -17,6 +18,12 @@ table {
   border-collapse: collapse;
   background: #f9f9f9;
   border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  table {
+    min-width: 100%;
+  }
 }
 
 th, td {
@@ -54,6 +61,12 @@ td {
   min-width: 150px;
 }
 
+@media (max-width: 768px) {
+  .filter-group {
+    min-width: 100%;
+  }
+}
+
 .filter-group label {
   font-family: 'Georgia', serif;
   font-size: 1rem;
@@ -85,6 +98,8 @@ td {
   align-items: center;
   margin-top: 1.5rem;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0 0.5rem;
 }
 
 .pagination-btn {
@@ -99,6 +114,21 @@ td {
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 8px rgba(0,48,135,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  min-height: 2.2rem;
+}
+
+@media (max-width: 480px) {
+  .pagination-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    font-size: 1rem;
+  }
 }
 
 .pagination-btn:hover:not(:disabled),
@@ -194,16 +224,35 @@ td {
 }
 
 @media (max-width: 768px) {
+  .table-container {
+    padding: 0.5rem;
+  }
+
+  .table-container h2 {
+    font-size: 1.3rem;
+  }
+
   .table-search-bar {
     flex-direction: column;
+    gap: 0.8rem;
   }
   
   .filter-group {
     width: 100%;
   }
+
+  .filter-group input[type="text"],
+  .filter-group select {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 700px) {
+  .table-container {
+    overflow-x: visible;
+  }
+
   .table-container table,
   .table-container thead,
   .table-container tbody,
@@ -222,41 +271,82 @@ td {
   
   .table-container tr {
     margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
   }
   
   .table-container td {
-    padding: 0.8rem;
+    padding: 1rem;
     position: relative;
     text-align: right;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .table-container td:last-child {
+    border-bottom: none;
   }
   
   .table-container td:before {
     content: attr(data-label);
-    position: absolute;
-    left: 0.8rem;
     font-weight: bold;
     color: #003087;
     text-align: left;
     font-family: 'Georgia', serif;
+    flex-shrink: 0;
+    width: 40%;
   }
-  
-  .table-container td[data-label="Date"]:before { content: "Date"; }
-  .table-container td[data-label="Staff Name"]:before { content: "Staff Name"; }
-  .table-container td[data-label="Role"]:before { content: "Role"; }
-  .table-container td[data-label="Email"]:before { content: "Email"; }
-  .table-container td[data-label="Status"]:before { content: "Status"; }
-  .table-container td[data-label="Actions"]:before { content: "Actions"; }
+
+  .table-container td > * {
+    flex: 1;
+    text-align: right;
+  }
+
+  .investor-name-btn {
+    text-align: right;
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
-  .table-container h2 {
-    font-size: 1.2rem;
+  .table-container {
+    padding: 0.3rem;
   }
 
-  th, td {
+  .table-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .table-search-bar {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .filter-group label {
+    font-size: 0.9rem;
+  }
+
+  .filter-group input[type="text"],
+  .filter-group select {
     padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .table-container td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .table-container td:before {
+    font-size: 0.85rem;
+    width: 35%;
   }
 }
 
@@ -265,42 +355,54 @@ td {
   .hamburger-dropdown {
     min-width: 140px;
     max-width: 180px;
-    right: -10px; /* Adjust to prevent overflow */
+    right: 0;
   }
 
   .dropdown-action-btn {
-    padding: 0.6rem 0.8rem;
+    padding: 0.7rem 0.9rem;
     font-size: 0.9rem;
+  }
+
+  .hamburger-btn {
+    padding: 0.6rem;
+  }
+
+  .hamburger-bar {
+    width: 22px;
+    height: 3px;
   }
 }
 
 @media (max-width: 480px) {
   .hamburger-dropdown {
-    position: fixed; /* Use fixed positioning on mobile for better control */
-    right: 10px;
-    left: 10px;
-    max-width: none;
-    min-width: auto;
-    z-index: 1000;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    min-width: 160px;
+    max-width: 200px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   }
 
   .hamburger-dropdown.dropdown-up {
-    bottom: 60px; /* Account for potential bottom navigation */
-  }
-
-  .hamburger-dropdown:not(.dropdown-up) {
     top: auto;
-    bottom: 60px;
+    bottom: 100%;
   }
 
   .dropdown-action-btn {
-    padding: 0.8rem 1rem;
+    padding: 0.9rem 1rem;
     font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
   }
 
-  /* Ensure dropdown doesn't interfere with table scrolling */
+  .dropdown-action-btn:last-child {
+    border-bottom: none;
+  }
+
   .hamburger-menu-wrapper {
+    position: static;
+  }
+
+  .table-container td[data-label="Actions"] {
     position: relative;
-    z-index: 5;
   }
 }

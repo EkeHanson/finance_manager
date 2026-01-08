@@ -649,20 +649,22 @@ const PotentialInvestorDetail = ({ investor, onBack, onUpdate }) => {
                   <span className="material-icons">trending_up</span>
                 </div>
                 <div className="card-content">
-                  {/* <h3>Investment Summary</h3>
+                  <h3>Investment Summary</h3>
                   <div className="info-row">
-                    <span className="label">Investment Amount:</span>
-                    <span className="value">{localInvestor.investmentAmount ? `₦${localInvestor.investmentAmount}` : 'N/A'}</span>
-                  </div> */}
-                  <div className="info-row">
-                    <span className="label">ROI Frequency:</span>
-                    <span className="value">{localInvestor.roiFrequency || 'Monthly'}</span>
+                    <span className="label">Principal Amount:</span>
+                    <span className="value">{localInvestor.principal_amount ? `₦${parseFloat(localInvestor.principal_amount).toLocaleString()}` : 'N/A'}</span>
                   </div>
                   <div className="info-row">
-                    <span className="label">Policy Date:</span>
-                    <span className="value">
-                      {localInvestor.policyDate ? new Date(localInvestor.policyDate).toLocaleDateString() : 'N/A'}
-                    </span>
+                    <span className="label">Current Balance:</span>
+                    <span className="value">{localInvestor.current_balance ? `₦${parseFloat(localInvestor.current_balance).toLocaleString()}` : 'N/A'}</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="label">ROI Balance:</span>
+                    <span className="value">{localInvestor.roi_balance ? `₦${parseFloat(localInvestor.roi_balance).toLocaleString()}` : '₦0.00'}</span>
+                  </div>
+                  <div className="info-row">
+                    <span className="label">ROI Frequency:</span>
+                    <span className="value">{localInvestor.roi_frequency || 'Monthly'}</span>
                   </div>
                 </div>
               </div>
@@ -770,6 +772,36 @@ const PotentialInvestorDetail = ({ investor, onBack, onUpdate }) => {
                 </div>
               </div>
             </div> */}
+
+            <div className="form-section">
+              <h3>Policy Summary</h3>
+              <div className="form-grid">
+                <div className="form-field">
+                  <label className="field-label">Policy Number</label>
+                  <div className="field-value">{localInvestor.policy_number || 'N/A'}</div>
+                </div>
+                <div className="form-field">
+                  <label className="field-label">Principal Amount</label>
+                  <div className="field-value">{localInvestor.principal_amount ? `₦${parseFloat(localInvestor.principal_amount).toLocaleString()}` : 'N/A'}</div>
+                </div>
+                <div className="form-field">
+                  <label className="field-label">Current Balance</label>
+                  <div className="field-value">{localInvestor.current_balance ? `₦${parseFloat(localInvestor.current_balance).toLocaleString()}` : 'N/A'}</div>
+                </div>
+                <div className="form-field">
+                  <label className="field-label">ROI Balance</label>
+                  <div className="field-value">{localInvestor.roi_balance ? `₦${parseFloat(localInvestor.roi_balance).toLocaleString()}` : '₦0.00'}</div>
+                </div>
+                <div className="form-field">
+                  <label className="field-label">ROI Rate</label>
+                  <div className="field-value">{localInvestor.roi_rate ? `${localInvestor.roi_rate}%` : 'N/A'}</div>
+                </div>
+                <div className="form-field">
+                  <label className="field-label">ROI Frequency</label>
+                  <div className="field-value">{localInvestor.roi_frequency || 'Monthly'}</div>
+                </div>
+              </div>
+            </div>
 
             {localInvestor.profile?.investment_details && localInvestor.profile.investment_details.length > 0 && (
               <div className="form-section">

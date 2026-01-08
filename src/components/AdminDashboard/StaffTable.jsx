@@ -31,6 +31,7 @@ const StaffTable = ({ staff, onStaffNameClick, onDelete }) => {
   const menuRef = useRef();
   const [dropdownUp, setDropdownUp] = useState(false);
   const btnRefs = useRef({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
 
   console.log("staff")
@@ -66,6 +67,14 @@ const StaffTable = ({ staff, onStaffNameClick, onDelete }) => {
   }, [openMenuId]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, monthFilter, statusFilter]);
 
@@ -77,14 +86,9 @@ const StaffTable = ({ staff, onStaffNameClick, onDelete }) => {
     setOpenMenuId(staffId);
     setTimeout(() => {
       if (btnRefs.current[staffId]) {
-        // On mobile, we use fixed positioning, so skip dynamic positioning
-        if (window.innerWidth <= 480) {
-          setDropdownUp(false);
-          return;
-        }
-
+        // Calculate dropdown positioning based on available space
         const rect = btnRefs.current[staffId].getBoundingClientRect();
-        const dropdownHeight = 180;
+        const dropdownHeight = 120;
         const spaceBelow = window.innerHeight - rect.bottom;
         setDropdownUp(spaceBelow < dropdownHeight);
       }
@@ -285,15 +289,23 @@ const StaffTable = ({ staff, onStaffNameClick, onDelete }) => {
         <button className="pagination-btn" onClick={handlePrev} disabled={currentPage === 1}>
           &lt;
         </button>
-        {[...Array(totalPages)].map((_, i) => (
-          <button
-            key={i}
-            className={`pagination-btn${currentPage === i + 1 ? ' active' : ''}`}
-            onClick={() => setCurrentPage(i + 1)}
-          >
-            {i + 1}
-          </button>
-        ))}
+        {isMobile ? (
+          // Mobile: Show only current page and total pages
+          <span style={{ padding: '0 0.5rem', fontSize: '0.95rem', color: '#003087', fontWeight: '600' }}>
+            {currentPage} / {totalPages}
+          </span>
+        ) : (
+          // Desktop: Show all page numbers
+          [...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              className={`pagination-btn${currentPage === i + 1 ? ' active' : ''}`}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))
+        )}
         <button className="pagination-btn" onClick={handleNext} disabled={currentPage === totalPages}>
           &gt;
         </button>
