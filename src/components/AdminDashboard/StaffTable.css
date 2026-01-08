@@ -14,15 +14,16 @@
 
 table {
   width: 100%;
-  min-width: 700px;
+  min-width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   background: #f9f9f9;
   border-radius: 10px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 900px) {
   table {
-    min-width: 100%;
+    min-width: 700px;
   }
 }
 
