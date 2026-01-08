@@ -73,6 +73,7 @@ const AdminDashboard = () => {
   ]);
   const [usersLoading, setUsersLoading] = useState(true);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   // Utility to create structured notifications
   const createNotification = (type, message, details, status) => ({
@@ -452,11 +453,14 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
     try {
-      // console.log('Logging out...');
       await logout();
     } catch (error) {
       console.error('Logout error:', error);
+    } finally {
+      setLoggingOut(false);
     }
   };
 
@@ -533,16 +537,30 @@ const AdminDashboard = () => {
               
               {/* Logout option in sidebar */}
               <li 
-                onClick={handleLogout}
+                onClick={loggingOut ? undefined : handleLogout}
                 style={{ 
                   marginTop: 'auto', 
                   borderTop: '1px solid rgba(0, 0, 0, 0.1)',
                   background: 'rgba(255, 98, 0, 0.1)',
-                  cursor: 'pointer'
+                  cursor: loggingOut ? 'not-allowed' : 'pointer',
+                  opacity: loggingOut ? 0.7 : 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem'
                 }}
+                aria-disabled={loggingOut}
               >
-                <span className="material-icons" style={{ color: '#ff6200' }}>logout</span> 
-                <span style={{ color: '#ff6200', fontWeight: '500' }}>Log Out</span>
+                {loggingOut ? (
+                  <>
+                    <span className="material-icons logout-spinner" style={{ color: '#ff6200' }}>autorenew</span>
+                    <span style={{ color: '#ff6200', fontWeight: '600' }}>Logging out...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="material-icons" style={{ color: '#ff6200' }}>logout</span> 
+                    <span style={{ color: '#ff6200', fontWeight: '500' }}>Log Out</span>
+                  </>
+                )}
               </li>
             </ul>
           </nav>

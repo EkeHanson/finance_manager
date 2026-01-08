@@ -1159,12 +1159,21 @@
   }
 
   .potential-investors-filters {
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .filter-group.compact {
     width: 100%;
   }
 
   .filter-group.compact input {
-    width: 160px;
+    width: 100%;
+  }
+
+  .status-filter-compact {
+    width: 100%;
   }
 
   .view-controls {
@@ -1212,15 +1221,68 @@
 
   .potential-investors-table-container {
     border-radius: 6px;
+    overflow-x: visible;
   }
 
+  .potential-investors-table,
+  .potential-investors-table thead,
+  .potential-investors-table tbody,
   .potential-investors-table th,
+  .potential-investors-table td,
+  .potential-investors-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .potential-investors-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .potential-investors-table tr {
+    margin-bottom: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
   .potential-investors-table td {
-    padding: 0.75rem 0.5rem;
+    padding: 1rem;
+    position: relative;
+    text-align: right;
+    border-bottom: 1px solid #f3f4f6;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .potential-investors-table td:last-child {
+    border-bottom: none;
+  }
+
+  .potential-investors-table td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #003087;
+    text-align: left;
+    flex-shrink: 0;
+    width: 40%;
+    font-size: 0.875rem;
+  }
+
+  .potential-investors-table td > * {
+    flex: 1;
+    text-align: right;
   }
 
   .investor-name-link {
     font-size: 0.8rem;
+    text-align: right;
+    width: 100%;
   }
 
   .investor-email {
@@ -1237,6 +1299,7 @@
 
   .table-actions {
     gap: 0.375rem;
+    justify-content: center;
   }
 }
 

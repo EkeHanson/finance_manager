@@ -237,15 +237,17 @@ td {
     flex-direction: column;
     gap: 0.8rem;
   }
-  
+
   .filter-group {
     width: 100%;
   }
 
   .filter-group input[type="text"],
   .filter-group select {
+    width: 100%;
     padding: 0.7rem;
     font-size: 1rem;
+    box-sizing: border-box;
   }
 }
 

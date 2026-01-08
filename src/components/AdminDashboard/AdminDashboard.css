@@ -67,6 +67,16 @@
 }
 
 
+.logout-spinner {
+  display: inline-block;
+  animation: logout-spin 0.9s linear infinite;
+}
+
+@keyframes logout-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Main dashboard area */
 .dashboard-main {
   flex: 1;
